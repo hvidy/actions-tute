@@ -34,4 +34,4 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           body: ${{ needs.script.outputs.body }}
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.GITHUB_TOKEN }}
