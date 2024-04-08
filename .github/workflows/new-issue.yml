@@ -8,9 +8,23 @@ jobs:
   comment-on-issue:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: run script
+        id: run-script
+        run: |
+          BODY=$(python3 .github/scripts/simple.py)
+          echo "body=${BODY}" >> $GITHUB_OUTPUT
+      
       - name: Issue comment
         uses: GrantBirki/comment@v2.0.10
         with:
           issue-number: ${{ github.event.issue.number }}
-          body: You've caused an issue!
+          body: ${{ steps.run-script.outputs.body }}
           token: ${{ secrets.PAT }}
