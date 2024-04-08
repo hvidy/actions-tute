@@ -2,10 +2,11 @@ name: New Issue
 on: 
   issues:
     types:
-      - opened
+      - labeled
 
 jobs:
   script:
+    if: contains(github.event.label.name, 'bug')
     runs-on: ubuntu-latest
     outputs:
       body: ${{ steps.run-script.outputs.body}}
