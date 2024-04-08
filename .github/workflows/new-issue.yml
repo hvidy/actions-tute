@@ -8,7 +8,7 @@ jobs:
   script:
     runs-on: ubuntu-latest
     outputs:
-      body: ${{ steps.run-script.outputs.body}
+      body: ${{ steps.run-script.outputs.body}}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
