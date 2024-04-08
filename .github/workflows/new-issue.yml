@@ -5,8 +5,10 @@ on:
       - opened
 
 jobs:
-  comment-on-issue:
+  script:
     runs-on: ubuntu-latest
+    outputs:
+      body: ${{ steps.run-script.outputs.body}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -21,10 +23,14 @@ jobs:
         run: |
           BODY=$(python3 .github/scripts/simple.py)
           echo "body=${BODY}" >> $GITHUB_OUTPUT
-      
+
+  comment-on-issue:
+    needs: script
+    runs-on: ubuntu-latest
+    steps:
       - name: Issue comment
         uses: GrantBirki/comment@v2.0.10
         with:
           issue-number: ${{ github.event.issue.number }}
-          body: ${{ steps.run-script.outputs.body }}
+          body: ${{ needs.script.outputs.body }}
           token: ${{ secrets.PAT }}
