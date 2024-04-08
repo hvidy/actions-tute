@@ -13,4 +13,4 @@ jobs:
         with:
           issue-number: ${{ github.event.issue.number }}
           body: You've caused an issue!
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT }}
