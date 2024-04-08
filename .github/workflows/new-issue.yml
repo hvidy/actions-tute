@@ -11,4 +11,5 @@ jobs:
       - name: Issue comment
         uses: GrantBirki/comment@v2.0.10
         with:
+          issue-number: ${{ github.event.issue.number }}
           body: You've caused an issue!
