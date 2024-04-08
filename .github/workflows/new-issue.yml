@@ -1,0 +1,14 @@
+name: New Issue
+on: 
+  issues:
+    types:
+      - opened
+
+jobs:
+  comment-on-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Issue comment
+        uses: kyoncy/issue-comment-actions@v1
+        with:
+          message: You've caused an issue!
